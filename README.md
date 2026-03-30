@@ -57,11 +57,12 @@ docker run -m 512m nginx
 👉 Limita el contenedor a 512 MB de RAM
 
 🔹 Opciones útiles
+```
 docker run \
   -m 512m \
   --memory-swap 1g \
   nginx
-
+```
 -m → límite de RAM
 --memory-swap → RAM + swap total permitido
 
@@ -78,30 +79,35 @@ docker run --cpuset-cpus="0,1" nginx
 👉 Solo usa cores 0 y 1
 
 🔹 3. Cuotas de CPU
+```
 docker run \
   --cpu-period=100000 \
   --cpu-quota=50000 \
   nginx
+```
 👉 Equivale a 50% de un CPU
 
 🧩 Ejemplo completo (tipo VM)
+```
 docker run -d \
   --name mi_app \
   -m 512m \
   --cpus="1" \
   --cpuset-cpus="0" \
   nginx
+```
 
 🐳 Usando Docker Compose
-
 🔹 Modo normal
+```
 services:
   web:
     image: nginx
     mem_limit: 512m
     cpus: 1.0
-
+```
 🔹 Docker Swarm
+```
 services:
   web:
     image: nginx
@@ -110,7 +116,7 @@ services:
         limits:
           cpus: '1.0'
           memory: 512M
-
+```
 🆚 Docker vs VM
 Característica	Docker	VM
 Aislamiento	OS (cgroups)	Completo
